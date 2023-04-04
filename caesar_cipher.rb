@@ -1,33 +1,32 @@
-def caesar_cipher (str, shift)
+def caesar_cipher(str, shift)
   arr = str.split("")
 
-  shift = shift % 26
+  shift = shift % 26;
 
   arr = arr.map do |el|
-    if (el.ord >= 97 && el.ord <= 122)
-      if (el.ord + shift <= 122)
-        el = (el.ord + shift).chr
-      else
-          el = (el.ord + shift - 26).chr
-      end
-    elsif (el.ord >= 65 && el.ord <= 90)
-      if (el.ord + shift <= 90)
-        el = (el.ord + shift).chr
-      else
-          el = (el.ord + shift - 26).chr
-      end
+    num = el.ord
+    total = num + shift
+
+    if num >= 97 && num <= 122
+      limit = 122   
+    elsif num >= 65 && num <= 90
+      limit = 90  
+    end
+
+    if (num >= 97 && num <= 122) || (num >= 65 && num <= 90)
+      el = total <= limit ? total.chr : (total - 26).chr
     else
-    	el
+      el
     end
   end
-  
+
   arr.join
 end
 
-puts "Enter the text that you want to encode: "
+puts "Enter text for encoding: "
 str = gets.chomp
 
-puts "Enter the desired shift: "
+puts "Enter shift: "
 shift = gets.chomp.to_i
 
 puts caesar_cipher(str, shift)
