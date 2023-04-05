@@ -18,4 +18,13 @@ def stock_picker(prices)
   puts "The best day to buy is #{diffs.key(best_diff)[0]} and the best day to sell is #{diffs.key(best_diff)[1]}"
 end
 
-puts stock_picker([30,3,6,9,1,1])
+prices = []
+
+puts "Enter prices: "
+price = gets.chomp.to_i
+while price > 0 do
+  prices.push(price)
+  price = gets.chomp.to_i
+end
+
+stock_picker(prices)
